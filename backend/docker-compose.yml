@@ -13,6 +13,14 @@ services:
       - ./.env
     depends_on:
       - db
+  tests:
+    build:
+      context: .
+    command: python manage.py test
+    volumes:
+      - .:/code
+    depends_on:
+      - db
   db:
     image: postgres:12.0-alpine
     volumes:
