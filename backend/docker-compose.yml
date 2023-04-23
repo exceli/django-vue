@@ -1,10 +1,11 @@
 version: '3.10'
+
 services:
   web:
     container_name: app
     build: .
-    command:  bash -c "python /usr/src/app/manage.py migrate --noinput &&
-              python /usr/src/app/manage.py runserver 0.0.0.0:8000"
+    command:  bash -c "poetry run python /usr/src/app/manage.py migrate --noinput &&
+              poetry run python /usr/src/app/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/usr/src/app
     ports:

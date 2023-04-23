@@ -1,12 +1,35 @@
 FROM python:3.10
 
+ENV DJANGO_ENV=${DJANGO_ENV} \
+  # python:
+  PYTHONFAULTHANDLER=1 \
+  PYTHONUNBUFFERED=1 \
+  PYTHONHASHSEED=random \
+  # pip:
+  PIP_NO_CACHE_DIR=off \
+  PIP_DISABLE_PIP_VERSION_CHECK=on \
+  PIP_DEFAULT_TIMEOUT=100 \
+  # poetry:
+  POETRY_VERSION=1.4.2 \
+  POETRY_VIRTUALENVS_CREATE=false \
+  POETRY_CACHE_DIR='/var/cache/pypoetry'
+
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y \
+    bash \
+    build-essential \
+    curl \
+    gettext \
+    git \
+    libpq-dev \
+    wget \
+  && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
+  && pip install "poetry==$POETRY_VERSION" && poetry --version
+
 WORKDIR /usr/src/app
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+COPY pyproject.toml poetry.lock /usr/src/app/
 
-RUN pip install --upgrade pip
-COPY ./requirements.txt /usr/src/requirements.txt
-RUN pip install -r /usr/src/requirements.txt
+RUN poetry install
 
 COPY . /usr/src/app/

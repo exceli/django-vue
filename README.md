@@ -1,5 +1,11 @@
 # Start
 
+## Install
+```
+git clone https://github.com/exceli/django-vue.git
+
+cd django-vue
+```
 Rename .env.example to .env and register your settings.
 
 ### Backend:
@@ -21,3 +27,5 @@ cd frontend/frontend
 
 docker-compose up
 ```
+
+After the start, the server and user parts will be available on 8000 and 8081 ports, respectively.
