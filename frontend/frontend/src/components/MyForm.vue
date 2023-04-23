@@ -1,11 +1,19 @@
 <template>
   <div>
     <form @submit.prevent="submitForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" v-model="name" />
-      <label for="age">Age:</label>
-      <input type="number" id="age" v-model.number="age" />
-      <button type="submit">Submit</button>
+      <div class="row g-2">
+        <div class="col-12">
+          <label for="name">Name:</label>
+          <input class="input-group" type="text" id="name" v-model="name" />
+        </div>
+        <div class="col-12">
+          <label for="age">Age:</label>
+          <input class="input-group" type="number" id="age" v-model.number="age" />
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </div>
     </form>
   </div>
 </template>
@@ -22,7 +30,7 @@ export default {
   },
   methods: {
     submitForm() {
-      axios.post('http://localhost:8000/api/v1/form/', {
+      axios.post('http://127.0.0.1:8000/api/v1/form/', {
         name: this.name,
         age: this.age,
       })
