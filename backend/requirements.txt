@@ -1,5 +1,13 @@
+aniso8601==9.0.1
 asgiref==3.6.0
-Django==3.1.7
+Django==4.2
+django-cors-headers==3.14.0
+djangorestframework==3.14.0
+promise==2.3
 psycopg2==2.9.6
+psycopg2-binary==2.9.6
+python-dotenv==1.0.0
 pytz==2023.3
+six==1.16.0
 sqlparse==0.4.4
+text-unidecode==1.3
